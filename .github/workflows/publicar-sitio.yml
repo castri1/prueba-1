@@ -1,0 +1,30 @@
+# name: Desplegar pagina a GitHub Pages
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Ejecutar los siguientes pasos
+#         run: |
+#           echo Aqui vamos a ejecutar una accion
+#           ls -all
+
+
+name: mi-primer-github-action
+run-name: ${{ github.actor }} esta aprendiendo GitHub actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install -g random-words
+      - run: node generador-palabras.js 
