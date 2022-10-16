@@ -1,9 +1,46 @@
-const randomWords = require('random-words');
+const randomWords = require("random-words");
 
-const randomWordsList = randomWords(5);
+async function logRandomWords() {
+  const randomWordsList = randomWords(50);
 
-for (const word of randomWordsList) {
+  for (const word of randomWordsList) {
     console.log(word);
+    await delay();
+  }
 }
 
-console.log("Terminé de decir palabras aleatorias");
+function delay() {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, 50);
+  });
+}
+
+function logStart() {
+  console.log(`
+  ███████ ████████  █████  ██████  ████████ 
+  ██         ██    ██   ██ ██   ██    ██    
+  ███████    ██    ███████ ██████     ██    
+       ██    ██    ██   ██ ██   ██    ██    
+  ███████    ██    ██   ██ ██   ██    ██    
+                                            
+                                            
+  `);
+}
+
+function logEnd() {
+  console.log(`
+  ███████ ███    ██ ██████  
+  ██      ████   ██ ██   ██ 
+  █████   ██ ██  ██ ██   ██ 
+  ██      ██  ██ ██ ██   ██ 
+  ███████ ██   ████ ██████  
+                            
+                            
+    `);
+}
+
+(async () => {
+  logStart();
+  await logRandomWords();
+  logEnd();
+})();
